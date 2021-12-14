@@ -12,7 +12,8 @@ export default function Home() {
         openGraph={{
           url: "https://stackle.io",
           title: "Stackle",
-          description = "Fill holes, cracks, and other defects in your cloud provider's developer experience",
+          description:
+            "Fill holes, cracks, and other defects in your cloud provider's developer experience",
         }}
       />
     </div>
