@@ -1,6 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { Provider as StyletronProvider } from "styletron-react";
+//@ts-ignore
 import { styletron } from "../styletron";
+
+import { GOOGLE_ANALYTICS } from "../lib/gtag";
 
 class MyDocument extends Document {
   static async getInitialProps(context) {
@@ -27,6 +30,22 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
+          />
           {
             //@ts-ignore
             this.props.stylesheets.map((sheet, i) => (
