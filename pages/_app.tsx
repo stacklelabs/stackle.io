@@ -1,9 +1,11 @@
 import "../styles/globals.css";
 import { Provider as StyletronProvider } from "styletron-react";
+import { ThemeProvider } from "atomize";
 import { styletron } from "../styletron";
 import { DefaultSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import { theme } from "../lib/theme";
 
 import SEO from "../next-seo.config";
 import * as gtag from "../lib/gtag";
@@ -24,8 +26,10 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <StyletronProvider value={styletron}>
-        <DefaultSeo {...SEO} />
-        <Component {...pageProps} />
+        <ThemeProvider theme={theme}>
+          <DefaultSeo {...SEO} />
+          <Component {...pageProps} />
+        </ThemeProvider>
       </StyletronProvider>
     </>
   );

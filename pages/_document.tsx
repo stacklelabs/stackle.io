@@ -2,6 +2,8 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 import { Provider as StyletronProvider } from "styletron-react";
 //@ts-ignore
 import { styletron } from "../styletron";
+import { ThemeProvider } from "atomize";
+import { theme } from "../lib/theme";
 
 import { GOOGLE_ANALYTICS } from "../lib/gtag";
 
@@ -13,7 +15,9 @@ class MyDocument extends Document {
         enhanceApp: (App) => (props: any) =>
           (
             <StyletronProvider value={styletron}>
-              <App {...props} />
+              <ThemeProvider theme={theme}>
+                <App {...props} />
+              </ThemeProvider>
             </StyletronProvider>
           ),
       });
